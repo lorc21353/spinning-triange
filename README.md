@@ -45,3 +45,6 @@ repeat these steps for the remaining amount of points adding the rotation betwee
 
 
 i hope this made at least some sense and i didnt make the explaination too complex 
+
+formula of points on the circumfrence of a circle on desmos graphing calculator:
+https://www.desmos.com/calculator/badxewwrey
