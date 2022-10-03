@@ -3,7 +3,14 @@ from tkinter import *
 from time import * 
 from math import *
 
-divisions = 3 # set the number of vertices in the regular polygon
+while True:
+  try:
+    divisions = int(input("Input the number of vertices: ")) # set the number of vertices in the regular polygon
+    break
+
+  except:
+    print("Invalid value entered\n")
+    
 polygon = [] # declare list of points of polygon
 
 root = Tk() # create window 
