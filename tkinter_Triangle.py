@@ -3,12 +3,18 @@ from tkinter import *
 from time import * 
 from math import *
 
+divisions = 3
+polygon = [] # declare list of points of polygon
+
 root = Tk() # create window 
 root.geometry("500x300") # set window size
-root.title("Spinning Triangle") # set window title 
+root.title("Spinning Polygon") # set window title 
 
 d = 0 # degrees of rotation
-polygon = [0, 0,0,0,0,0] # declare list of points of polygon
+for count in range(divisions):
+  polygon.append(0)
+  polygon.append(0)
+  
 centerx = 200 #center of polygon
 centery = 150
 canvas = Canvas(root, width = 500, height = 300) # declare canvas
@@ -25,12 +31,13 @@ while True:
   if d == 360: # there is no point making the degrees really large so ill include a reset for it 
     d = 0
   i = d*(pi/180) # turning degrees into radians
-  polygon[0] = (70.711*cos(i))+centerx    # this whole section is just a load of trig with radians, if you want an explaination ill put one in the .readme file on the github page
-  polygon[1] = (70.711*sin(i))+centery
-  polygon[2] = (70.711*cos(i+((pi*2)/3)))+centerx
-  polygon[3] = (70.711*sin(i+((pi*2)/3)))+centery
-  polygon[4] = (70.711*cos((i+(pi*4)/3)))+centerx
-  polygon[5] = (70.711*sin((i+(pi*4)/3)))+centery
+
+  # improved radian maths with for loop, old one in readme file, the logic remains the same
+  for count in range(len(polygon)):
+    if(count % 2 != 0):
+      continue
+    polygon[count] = (70.711*cos(i+((pi*count)/divisions)))+centerx
+    polygon[count+1] = (70.711*sin(i+((pi*count)/divisions)))+centery
 
   print(polygon) # print the array of points on the polygon 
   poly = canvas.create_polygon(polygon, outline='gray', fill='gray', width=1) # add the new polygon
