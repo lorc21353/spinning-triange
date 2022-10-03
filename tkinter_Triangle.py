@@ -3,7 +3,7 @@ from tkinter import *
 from time import * 
 from math import *
 
-divisions = 3
+divisions = 3 # set the number of vertices in the regular polygon
 polygon = [] # declare list of points of polygon
 
 root = Tk() # create window 
