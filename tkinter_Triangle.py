@@ -2,6 +2,7 @@
 from tkinter import * 
 from time import * 
 from math import *
+polygon = [] # declare list of points of polygon
 
 while True:
   try:
@@ -10,20 +11,29 @@ while True:
 
   except:
     print("Invalid value entered\n")
-    
-polygon = [] # declare list of points of polygon
 
-root = Tk() # create window 
-root.geometry("500x300") # set window size
-root.title("Spinning Polygon") # set window title 
+while True:
+  try:
+    polySize = int(input("Input the size: ")) # set the size of the circle around the polygon that the polygon is being drawn on the edge of 
+    break
 
-d = 0 # degrees of rotation
+  except:
+    print("Invalid value entered\n")
 for count in range(divisions):
   polygon.append(0)
   polygon.append(0)
   
 centerx = 200 #center of polygon
 centery = 150
+
+
+
+root = Tk() # create window 
+root.geometry("500x300") # set window size
+root.title("Spinning Regular Polygon") # set window title 
+
+d = 0 # degrees of rotation
+
 canvas = Canvas(root, width = 500, height = 300) # declare canvas
 center = canvas.create_polygon([centerx,centery], outline='blue', width=5) # create initial window 
 poly = canvas.create_polygon(polygon, outline='gray', fill='gray', width=1) # create inital polygon
@@ -43,8 +53,8 @@ while True:
   for count in range(len(polygon)):
     if(count % 2 != 0):
       continue
-    polygon[count] = (70.711*cos(i+((pi*count)/divisions)))+centerx
-    polygon[count+1] = (70.711*sin(i+((pi*count)/divisions)))+centery
+    polygon[count] = (polySize*cos(i+((pi*count)/divisions)))+centerx
+    polygon[count+1] = (polySize*sin(i+((pi*count)/divisions)))+centery
 
   print(polygon) # print the array of points on the polygon 
   poly = canvas.create_polygon(polygon, outline='gray', fill='gray', width=1) # add the new polygon
