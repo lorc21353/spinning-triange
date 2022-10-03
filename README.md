@@ -1,4 +1,4 @@
-# spinning-triange
+# spinning-triangle
 python code for a spinning triangle 
 
 
