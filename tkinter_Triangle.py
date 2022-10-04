@@ -7,6 +7,8 @@ polygon = [] # declare list of points of polygon
 while True:
   try:
     divisions = int(input("Input the number of vertices: ")) # set the number of vertices in the regular polygon
+    if divisions < 1:
+      raise("invalid number of vertices")
     break
 
   except:
