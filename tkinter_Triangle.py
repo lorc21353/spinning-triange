@@ -24,15 +24,39 @@ while True:
 for count in range(divisions):
   polygon.append(0)
   polygon.append(0)
-  
+
+print ("WASD to move the polygon, Q,E to change the rotation speed")
 centerx = 200 #center of polygon
 centery = 150
+sleeplen = 0.02
 
+def onKeyPress(event):
+  global centerx
+  global centery
+  global sleeplen
+  #print(event.char)
+  if event.char == "w":
+    centery-=1
+  elif event.char == "s":
+    centery+=1
+  elif event.char == "a":
+    centerx-=1
+  elif event.char == "d":
+    centerx+=1
+  elif event.char == "q":
+    sleeplen -= 0.0001
+    if sleeplen <= 0:
+      sleeplen = 0
+    print("rotation speed =", sleeplen)
+  elif event.char == "e":
+    sleeplen += 0.0001
+    print("rotation speed =", sleeplen)
 
 
 root = Tk() # create window 
 root.geometry("500x300") # set window size
 root.title("Spinning Regular Polygon") # set window title 
+root.bind('<KeyPress>', onKeyPress)
 
 d = 0 # degrees of rotation
 
@@ -41,9 +65,12 @@ center = canvas.create_polygon([centerx,centery], outline='blue', width=5) # cre
 poly = canvas.create_polygon(polygon, outline='gray', fill='gray', width=1) # create inital polygon
 canvas.pack() # basically just finishing making the canvas, it submits the options inside to the compiler for this code im not using any optional bits 
 
+
+
+
 # if i were going to make multiple spinning objects i would make this a class and then put copies inside of an array but that is way too much work for such a small project 
 while True:
-  sleep(0.02)
+  sleep(sleeplen)
   canvas.delete(poly) # remove the old polygon
   canvas.delete(center)
   d+=1 # increment degrees
@@ -58,7 +85,7 @@ while True:
     polygon[count] = (polySize*cos(i+((pi*count)/divisions)))+centerx
     polygon[count+1] = (polySize*sin(i+((pi*count)/divisions)))+centery
 
-  print(polygon) # print the array of points on the polygon 
+  #print(polygon) # print the array of points on the polygon 
   poly = canvas.create_polygon(polygon, outline='gray', fill='gray', width=1) # add the new polygon
   center = canvas.create_polygon([centerx,centery], outline='blue', width=5) # draw center point overtop of the polygon
   canvas.update() # update the canvas to draw the new pixels 
